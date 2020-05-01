@@ -39,10 +39,11 @@
                     </button>
                 </h2>
             </div>
+
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 <h4>Perbandingan berpasangan (x)</h4>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <div class="table-responsive">
                         <?php if ( empty($evaluation)) : ?>
                             <div class="alert alert-danger" role="alert">
@@ -52,9 +53,10 @@
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <!-- <th rowspan="2">Alternatif</th>
-                                    <th colspan="5" class="text center">Criteria</th> -->
-                                    <th scope="col">Alt</th>
+                                    <th rowspan="2">Alt</th>
+                                    <th colspan="9">Criteria</th>
+                                </tr>
+                                <tr>
                                     <th scope="col">C1</th>
                                     <th scope="col">C2</th>
                                     <th scope="col">C3</th>
@@ -79,7 +81,7 @@
 
             <div class="card-body">
             <h4>Perbandingan berpasangan ternormalisasi (r)</h4>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <div class="table-responsive">
                         <?php if ( empty($evaluation)) : ?>
                             <div class="alert alert-danger" role="alert">
@@ -89,7 +91,10 @@
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th scope="col">Alt</th>
+                                    <th rowspan="2">Alt</th>
+                                    <th colspan="9">Criteria</th>
+                                </tr>
+                                <tr>
                                     <th scope="col">C1</th>
                                     <th scope="col">C2</th>
                                     <th scope="col">C3</th>
@@ -112,6 +117,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="card">
             <div class="card-header" id="headingTwo">
             <h2 class="mb-0">
@@ -123,7 +129,7 @@
             <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
             <h4>Menentukan bobot tiap-tiap kriteria (w)</h4>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <div class="table-responsive">
                         <?php if ( empty($evaluation)) : ?>
                             <div class="alert alert-danger" role="alert">
@@ -156,7 +162,47 @@
                 </div>
             </div>
             </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <h4>Membentuk matriks preferensi (v)</h4>
+                <div class="card-body text-center">
+                    <div class="table-responsive">
+                        <?php if ( empty($evaluation)) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                Data Evaluasi tidak ditemukan!
+                            </div>
+                        <?php endif; ?>
+                        <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Alt</th>
+                                    <th colspan="9">Criteria</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">C1</th>
+                                    <th scope="col">C2</th>
+                                    <th scope="col">C3</th>
+                                    <th scope="col">C4</th>
+                                    <th scope="col">C5</th>
+                                    <th scope="col">C6</th>
+                                    <th scope="col">C7</th>
+                                    <th scope="col">C8</th>
+                                    <th scope="col">C9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    <br>
+                    </div>
+                </div>         
+            </div>
         </div>
+
         <div class="card">
             <div class="card-header" id="headingThree">
             <h2 class="mb-0">
@@ -165,17 +211,14 @@
                 </button>
             </h2>
             </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
-                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-
-                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-                <br>
-                <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                Langkah #4
-                </button>
+                <table class="table table-hover">
+                    
+                </table>
             </div>
         </div>
+
         <div class="card">
             <div class="card-header" id="headingFour">
             <h2 class="mb-0">
@@ -195,6 +238,7 @@
             </div>
             </div>
         </div>
+
         <div class="card">
             <div class="card-header" id="headingFive">
             <h2 class="mb-0">
@@ -214,6 +258,7 @@
             </div>
             </div>
         </div>
+
         <div class="card">
             <div class="card-header" id="headingSix">
                 <h2 class="mb-0">
