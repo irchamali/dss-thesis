@@ -14,7 +14,7 @@ class Evaluation extends CI_Controller{
 
 	public function index()
     {
-    	$data['title'] = 'Suitable Land Evaluation';
+    	$data['title'] = 'Perbandingan berpasangan alternative dengan criteria';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
@@ -23,6 +23,21 @@ class Evaluation extends CI_Controller{
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('evaluation/index', $data);
+        $this->load->view('templates/footer2');
+        
+    }
+
+    public function form01()
+    {
+    	$data['title'] = 'Perbandingan berpasangan alternative dengan criteria';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
+        
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('evaluation/form01', $data);
         $this->load->view('templates/footer2');
         
     }
@@ -71,34 +86,34 @@ class Evaluation extends CI_Controller{
     //     $this->load->view('templates/footer2');
     // }
 
-    // public function ubah($id)
-    // {
-    //     $data['title'] = 'Criteria Data Management';
-    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    public function form01ubah($id)
+    {
+        $data['title'] = 'Criteria Data Management';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-    //     //maka kirimkan method ini dengan parameter $id yg ada dalam tanda kurung
-    //     $data['criteria'] = $this->Criteria_model->getCriteriaById($id);
-    //     // $data['weight'] = $this->Criteria_model->getAllWeight();
-    //     $data['weight'] = ['1','2','3','4','5'];
+        //maka kirimkan method ini dengan parameter $id yg ada dalam tanda kurung
+        $data['evaluation'] = $this->Evaluation_model->getEvaluationById($id);
+        // $data['weight'] = $this->Criteria_model->getAllWeight();
+        $data['value'] = ['1','2','3','4'];
 
-    //     $this->form_validation->set_rules('criteria', 'Criteria', 'required');
-    //     $this->form_validation->set_rules('code_crt', 'Code Criteria', 'required');
-    //     // $this->form_validation->set_rules('weight', 'Weight', 'required'); //gak perlu karena combo-box
+        $this->form_validation->set_rules('id_alternative', 'idAlternative', 'required');
+        $this->form_validation->set_rules('id_criteria', 'idCriteria', 'required');
+        // $this->form_validation->set_rules('weight', 'Weight', 'required'); //gak perlu karena combo-box
 
-    //     if($this->form_validation->run()== FALSE){
-    //     $this->load->view('templates/header', $data);
-    //     $this->load->view('templates/sidebar', $data);
-    //     $this->load->view('templates/topbar', $data);
-    //     $this->load->view('evaluation/ubah', $data);
-    //     $this->load->view('templates/footer2');
-    //     }else {
-    //         // echo "berhasil";
-    //         $this->Criteria_model->ubahDataCriteria();
-    //         $this->session->set_flashdata('flash', 'Diubah'); 
-    //         redirect('criteria'); //sebelum redirect set dulu sessionnya
-    //     }
+        if($this->form_validation->run()== FALSE){
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('evaluation/form01ubah', $data);
+        $this->load->view('templates/footer2');
+        }else {
+            // echo "berhasil";
+            $this->Evaluation_model->ubahDataEvaluation();
+            $this->session->set_flashdata('flash', 'Diubah'); 
+            redirect('evaluation/form01'); //sebelum redirect set dulu sessionnya
+        }
 
-    // }
+    }
 
     // public function cari()
     // {

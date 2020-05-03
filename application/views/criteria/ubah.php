@@ -29,12 +29,12 @@
                         <input type="hidden" name="id_criteria" value="<?= $criteria['id_criteria']; ?>">
                         <div class="form-group">
                             <label for="criteria">Kriteria</label>
-                            <input type="text" name="criteria" class="form-control" id="criteria" value="<?= $criteria['criteria']; ?>">
+                            <input type="text" name="criteria" class="form-control" id="criteria" value="<?= $criteria['criteria']; ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('criteria'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="code_crt">Kode</label>
-                            <input type="text" name="code_crt" class="form-control" id="code_crt" value="<?= $criteria['code_crt']; ?>" >
+                            <input type="text" name="code_crt" class="form-control" id="code_crt" value="<?= $criteria['code_crt']; ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('code_crt'); ?></small>
                         </div>
                         <div class="form-group">

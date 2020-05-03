@@ -8,6 +8,7 @@ class Evaluation_model extends CI_Model{
         // return $query->result_array(); //baca query builder pada documentasi CI
         //lebih simplenya gini nih:
         return $this->db->get('electre_evaluations')->result_array(); //tanpa select * from 
+        // $this->db->order_by('id_alternative', 'id_criteria');
     } 
 
     // public function tambahDataEvaluation()
@@ -28,22 +29,22 @@ class Evaluation_model extends CI_Model{
     //     $this->db->delete('electre_criterias', ['id_criteria'=>$id]);
     // }
 
-    // public function getCriteriaById($id)
-    // {
-    //     return $this->db->get_where('electre_criterias', ['id_criteria'=>$id])->row_array();
-    // }
+    public function getEvaluationById($id)
+    {
+        return $this->db->get_where('electre_evaluations', ['id_alternative'=>$id])->row_array();
+    }
 
-    // public function ubahDataCriteria()
-    // {
-    //     $data = [
-    //         "criteria" => $this->input->post('criteria', true),
-    //         "code_crt" => $this->input->post('code_crt', true),
-    //         "weight" => $this->input->post('weight', true)
-    //     ]; //urutkan sesuai dengan field yg tampil //true untuk mengamnkan data yg dikirim
-    //     //bedanya dengan insert ada pada penambahan 'where' sebelum 'update'
-    //     $this->db->where('id_criteria', $this->input->post('id_criteria'));
-    //     $this->db->update('electre_criterias', $data);
-    // }
+    public function ubahDataEvaluation()
+    {
+        $data = [
+            "id_alternative" => $this->input->post('id_alternative', true),
+            "id_criteria" => $this->input->post('id_criteria', true),
+            "value" => $this->input->post('value', true)
+        ]; //urutkan sesuai dengan field yg tampil //true untuk mengamnkan data yg dikirim
+        //bedanya dengan insert ada pada penambahan 'where' sebelum 'update'
+        $this->db->where('id_alternative', $this->input->post('id_alternative'));
+        $this->db->update('electre_evaluations', $data);
+    }
 
     // public function cariDataCriteria()
     // {
