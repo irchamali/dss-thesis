@@ -77,11 +77,11 @@
                                 foreach ($get_data_alt as $key => $value) {
                                     echo'
                                     <tr>
-                                        <td>'.$value->id_alternative.'</td>';
+                                        <td>A'.$value->id_alternative.'</td>';
                                         foreach ($get_data_kriteria as $key => $row) {
                                             $get_select_eval = $this->db->query("SELECT * FROM electre_evaluations a WHERE a.id_alternative='".$value->id_alternative."' AND a.id_criteria='".$row->id_criteria."' LIMIT 1")->row_array();
                                             echo'<td>'.$get_select_eval['value'].'</td>';
-                                        }
+                                        }            
                                     echo'</tr>';
                                 }
                                 ?>
@@ -94,35 +94,52 @@
 
             <div class="card-body">
             <h4>Perbandingan berpasangan ternormalisasi (r)</h4>
-                <div class="card-body text-center">
+                <div class="card-body">
                     <div class="table-responsive">
                         <?php if ( empty($evaluation)) : ?>
                             <div class="alert alert-danger" role="alert">
                                 Data Evaluasi tidak ditemukan!
                             </div>
                         <?php endif; ?>
-                        <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+
+                        <?php
+                        $get_data_kriteria = $this->db->query("SELECT * FROM `electre_criterias`")->result();
+                        $get_data_alt = $this->db->query("SELECT * FROM `electre_alternatives`")->result();
+                        $x = $this->db->query("SELECT * FROM electre_evaluations a WHERE a.id_alternative='".$value->id_alternative."' AND a.id_criteria='".$row->id_criteria."' LIMIT 1")->row_array();
+                        $x_rata = array();
+                        ?>
+                        <table class="table table-bordered table-hover text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th rowspan="2">Alt</th>
-                                    <th colspan="9">Criteria</th>
+                                    <th colspan="<?= count($get_data_kriteria); ?>">Criteria</th>
                                 </tr>
                                 <tr>
-                                    <th scope="col">C1</th>
-                                    <th scope="col">C2</th>
-                                    <th scope="col">C3</th>
-                                    <th scope="col">C4</th>
-                                    <th scope="col">C5</th>
-                                    <th scope="col">C6</th>
-                                    <th scope="col">C7</th>
-                                    <th scope="col">C8</th>
-                                    <th scope="col">C9</th>
+                                    <?php
+                                    foreach ($get_data_kriteria as $j => $value) {
+                                        echo'<th>C'.$value->id_criteria.'</th>';
+                                    }
+                                    ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td> 
-                                </tr>
+                            <?php
+                                foreach ($get_data_alt as $i => $value) {
+                                    echo'
+                                    <tr>
+                                        <td>A'.$value->id_alternative.'</td>';
+                                            // echo'<td>'.$get_select_eval['value'].'</td>';
+                                        foreach($get_data_kriteria as $j=>$row){
+                                            $get_select_eval = $this->db->query("SELECT * FROM electre_evaluations a WHERE a.id_alternative='".$value->id_alternative."' AND a.id_criteria='".$row->id_criteria."' LIMIT 1")->row_array();
+                                            
+                                            if ($get_select_eval['value']) {
+                                                echo'<td>'."okay".'</td>';
+                                            }
+                                        }
+
+                                    echo'</tr>';
+                                }
+                                ?>
                             </tbody>
                         </table>
                     <br>
@@ -149,25 +166,29 @@
                                 Data Evaluasi tidak ditemukan!
                             </div>
                         <?php endif; ?>
+
+                        <?php 
+                        $get_data_kriteria = $this->db->query("SELECT * FROM `electre_criterias`")->result();
+                        ?>
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th scope="col">Criteria</th>
-                                    <th scope="col">C1</th>
-                                    <th scope="col">C2</th>
-                                    <th scope="col">C3</th>
-                                    <th scope="col">C4</th>
-                                    <th scope="col">C5</th>
-                                    <th scope="col">C6</th>
-                                    <th scope="col">C7</th>
-                                    <th scope="col">C8</th>
-                                    <th scope="col">C9</th>
+                                    <?php
+                                    foreach ($get_data_kriteria as $key => $value) {
+                                        echo'<th>C'.$value->id_criteria.'</th>';
+                                    }
+                                    ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                
                                 <tr>
                                     <td scope="row">Bobot</td>
+                                    <?php
+                                    foreach ($get_data_kriteria as $key => $value) {
+                                        echo'<th>'.$value->weight.'</th>';
+                                    }
+                                    ?>
                                 </tr>
                             </tbody>
                         </table>
