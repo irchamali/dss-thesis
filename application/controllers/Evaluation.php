@@ -1,45 +1,119 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Evaluation extends CI_Controller{
-	
+class Evaluation extends CI_Controller
+{
+
     public function __construct()
     {
-		parent::__construct();
-		$this->load->model('Evaluation_model'); //load dulu modelnya agr bisa dipake semua method dalam satu controller
+        parent::__construct();
+        $this->load->model('Evaluation_model'); //load dulu modelnya agr bisa dipake semua method dalam satu controller
         is_logged_in();
         $this->load->library('form_validation');
+    }
 
-	}
-
-	public function index()
+    public function index()
     {
-    	$data['title'] = 'Perbandingan berpasangan alternative dengan criteria';
+        $data['title'] = 'Evaluasi Kesesuaian Penggunaan Lahan menggunakan Metode ELECTRE';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        //perbandingan berpasangan
+        $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
+        $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
+        $data['getSelectEval'] = $this->Evaluation_model->getSelectEval();
+
+        // bagian perhitungan segitiga
+        $a = 5; // alas
+        $t = 3; // tinggi
+        $data['luasSegitiga'] = $this->Evaluation_model->LuasSegitiga($a, $t);
+
+        $s = 5; // sisi
+        $data['luasPersegi'] = $this->Evaluation_model->LuasPersegi($s);
+
         $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('evaluation/index', $data);
         $this->load->view('templates/footer2');
-        
     }
+
+    public function hasil()
+    {
+        $data['title'] = 'Hasil';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        //perbandingan berpasangan
+        $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
+        $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
+        $data['getSelectEval'] = $this->Evaluation_model->getSelectEval();
+
+
+        $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('evaluation/hasil', $data);
+        $this->load->view('templates/footer2');
+    }
+
 
     public function form01()
     {
-    	$data['title'] = 'Perbandingan berpasangan alternative dengan criteria';
+        $data['title'] = 'Perbandingan berpasangan alternative dengan criteria';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('evaluation/form01', $data);
         $this->load->view('templates/footer2');
-        
+    }
+
+    public function segitiga()
+    {
+        $data['title'] = 'Perbandingan berpasangan alternative dengan criteria';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $a = 5; // alas
+        $t = 3; // tinggi
+        $data['luas'] = $this->Evaluation_model->LuasSegitiga($a, $t);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('evaluation/index', $data);
+        $this->load->view('templates/footer2');
+    }
+
+    public function penilaian()
+    {
+        $data['title'] = 'Penilaian ';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        //perbandingan berpasangan
+        $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
+        $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
+        $data['getSelectEval'] = $this->Evaluation_model->getSelectEval();
+
+        // bagian perhitungan segitiga
+        $a = 5; // alas
+        $t = 3; // tinggi
+        $data['luasSegitiga'] = $this->Evaluation_model->LuasSegitiga($a, $t);
+
+        $s = 5; // sisi
+        $data['luasPersegi'] = $this->Evaluation_model->LuasPersegi($s);
+
+        $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('evaluation/index', $data);
+        $this->load->view('templates/footer2');
     }
 
     // public function tambah()
@@ -129,7 +203,7 @@ class Evaluation extends CI_Controller{
     //     $this->load->view('templates/topbar', $data);
     //     $this->load->view('evaluation/index', $data);
     //     $this->load->view('templates/footer2');
-        
+
     // }
 
 }

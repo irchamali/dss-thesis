@@ -85,7 +85,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'WPU User Registration';
+            $data['title'] = 'DSS User Registration';
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/registration');
             $this->load->view('templates/auth_footer');
@@ -125,8 +125,8 @@ class Auth extends CI_Controller
         $config = [
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'wpunpas@gmail.com',
-            'smtp_pass' => '1234567890',
+            'smtp_user' => 'irhamsystem@gmail.com',
+            'smtp_pass' => 'siti1994sarman',
             'smtp_port' => 465,
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
@@ -135,7 +135,7 @@ class Auth extends CI_Controller
 
         $this->email->initialize($config);
 
-        $this->email->from('wpunpas@gmail.com', 'Web Programming UNPAS');
+        $this->email->from('irhamsystem@gmail.com', 'DSS-LS Website');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {

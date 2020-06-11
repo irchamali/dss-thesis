@@ -11,6 +11,27 @@ class Evaluation_model extends CI_Model{
         // $this->db->order_by('id_alternative', 'id_criteria');
     } 
 
+    public function getDataCriteria(){
+        return $this->db->query("SELECT * FROM `electre_criterias`")->result();
+    }
+
+    public function getDataAlternative(){
+        return $this->db->query("SELECT * FROM `electre_alternatives`")->result();
+    }
+
+    public function getSelectEval(){
+        return $this->db->query("SELECT * FROM electre_evaluations ORDER BY id_alternative,id_criteria")->result();
+    }
+
+    public function LuasSegitiga($alas,$tinggi) {
+		return 0.5*$alas*$tinggi;
+    }
+    
+    public function LuasPersegi($sisi) {
+		return $sisi*$sisi;
+    }
+    
+
     // public function tambahDataEvaluation()
     // {
     //     $data = [
