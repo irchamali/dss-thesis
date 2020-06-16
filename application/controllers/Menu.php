@@ -77,7 +77,6 @@ class Menu extends CI_Controller
     public function deletemenu($id)
     {
         $this->db->delete('user_menu', ['id' => $id]);
-
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">The menu has ben deleted!</div>');
         redirect('menu');
     }
@@ -85,14 +84,14 @@ class Menu extends CI_Controller
     public function editsubmenu($id)
     {
         $this->db->update('user_sub_menu', ['title' => $this->input->post('title')], ['id' => $id]);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The menu has ben edited!</div>');
-        redirect('submenu');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The submenu has ben edited!</div>');
+        redirect('menu/submenu');
     }
 
     public function deletesubmenu($id)
     {
-        $this->db->delete('user_sub_menu', ['menu_id' => $id]);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">The menu has ben deleted!</div>');
-        redirect('submenu');
+        $this->db->delete('user_sub_menu', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">The submenu has ben deleted!</div>');
+        redirect('menu/submenu');
     }
 }

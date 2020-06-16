@@ -71,7 +71,7 @@
 
 <!-- Modal -->
 
-<!-- Modal -->
+<!-- Modal Add -->
 <div class="modal fade" id="newSubMenuModal" tabindex="-1" role="dialog" aria-labelledby="newSubMenuModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
