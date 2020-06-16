@@ -6,8 +6,8 @@
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= base_url(); ?>criteria">Criteria</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+            <li class="breadcrumb-item"><a href="<?= base_url(); ?>criteria">Admin</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah User</li>
         </ol>
     </nav>
 
@@ -16,14 +16,9 @@
     <div class="col-md-6 mt-4">
         <div class="card">
             <div class="card-header">
-                Form Tambah Data Criteria
+                Form Tambah Data User
             </div>
             <div class="card-body">
-                <!-- <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>  -->
                 <form action="" method="POST">
                     <div class="form-group">
                         <label for="criteria">Kriteria</label>
@@ -43,13 +38,6 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                            <!-- <?php foreach ($weight as $w) : ?>
-                                <?php if ($w == $criteria['weight']) : ?>
-                                    <option value="<?= $w; ?>" selected><?= $w; ?></option>
-                                <?php else : ?>
-                                    <option value="<?= $w; ?>"><?= $w; ?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?> -->
                         </select>
                     </div>
                     <button type="submit" name="tambah" class="btn btn-primary float-right">Tambah Data</button>
