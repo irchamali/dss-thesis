@@ -14,7 +14,41 @@ class Evaluation extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Evaluasi Kesesuaian Penggunaan Lahan menggunakan Metode ELECTRE';
+        $data['title'] = 'Hasil';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        //perbandingan berpasangan
+        $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
+        $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
+        $data['getSelectEval'] = $this->Evaluation_model->getSelectEval();
+
+        $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('evaluation/index', $data);
+        $this->load->view('templates/footer2');
+    }
+
+    private function getDataEvaluasi()
+    {
+        $electreData = $this->Electre_model->getAll();
+        $dataEvaluasi = array();
+        foreach ($electreData as $item => $value) {
+            foreach ($value as $x => $z) {
+                if ($x == 'Evaluation') {
+                    continue;
+                }
+                $dataEvaluasi[$x] = $this->Electre_model->getStatus($x);
+            }
+        }
+        return $dataEvaluasi;
+    }
+
+    public function hasil()
+    {
+        $data['title'] = 'Evaluasi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         //perbandingan berpasangan
@@ -29,26 +63,6 @@ class Evaluation extends CI_Controller
 
         $s = 5; // sisi
         $data['luasPersegi'] = $this->Evaluation_model->LuasPersegi($s);
-
-        $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('evaluation/index', $data);
-        $this->load->view('templates/footer2');
-    }
-
-    public function hasil()
-    {
-        $data['title'] = 'Hasil';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        //perbandingan berpasangan
-        $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
-        $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
-        $data['getSelectEval'] = $this->Evaluation_model->getSelectEval();
-
 
         $data['evaluation'] = $this->Evaluation_model->getAllEvaluation();
 
