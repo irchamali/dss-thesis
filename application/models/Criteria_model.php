@@ -12,12 +12,22 @@ class Criteria_model extends CI_Model
         return $this->db->get('electre_criterias')->result_array(); //tanpa select * from 
     }
 
+    public function getWeight()
+    {
+        $query = "SELECT `electre_criterias`.*, `electre_weight`.`weight`
+                  FROM `electre_criterias` JOIN `electre_weight`
+                  ON `electre_criterias`.`weight_id` = `electre_weight`.`id`
+                  ";
+        return $this->db->query($query)->result_array();
+    }
+
+
     public function tambahDataCriteria()
     {
         $data = [
             "criteria" => $this->input->post('criteria', true),
             "code_crt" => $this->input->post('code_crt', true),
-            "weight" => $this->input->post('weight', true)
+            "weight" => $this->input->post('weight_id', true)
         ]; //urutkan sesuai dengan field yg tampil //true untuk mengamnkan data yg dikirim
         $this->db->insert('electre_criterias', $data);
     }
@@ -40,7 +50,7 @@ class Criteria_model extends CI_Model
         $data = [
             "criteria" => $this->input->post('criteria', true),
             "code_crt" => $this->input->post('code_crt', true),
-            "weight" => $this->input->post('weight', true)
+            "weight_id" => $this->input->post('weight_id', true)
         ]; //urutkan sesuai dengan field yg tampil //true untuk mengamnkan data yg dikirim
         //bedanya dengan insert ada pada penambahan 'where' sebelum 'update'
         $this->db->where('id_criteria', $this->input->post('id_criteria'));

@@ -36,8 +36,8 @@
                         <small class="form-text text-danger"><?= form_error('code_crt'); ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="weight">Bobot</label>
-                        <select class="form-control" id="weight" name="weight">
+                        <label for="weight_id">Bobot</label>
+                        <select class="form-control" id="weight_id" name="weight_id">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

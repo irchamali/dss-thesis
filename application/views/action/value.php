@@ -50,8 +50,8 @@
                                 <td><?= $alt['info']; ?></td>
                                 <td><?= $alt['plants']; ?></td>
                                 <td>
-                                    <!-- <a href="<?= base_url(); ?>alternative/detail/<?= $alt['id_alternative']; ?>" class="badge badge-info">Detail</a>
-                                    <a href="<?= base_url(); ?>alternative/ubah/<?= $alt['id_alternative']; ?>" class="badge badge-warning">Ubah</a> -->
+                                    <a href="" data-toggle="modal" data-target="#lihatModal<?= $alt['id_alternative'] ?>" class="badge badge-success"><i class="far fa-fw fa-eye"></i> Detail</a>
+                                    <a href="" data-toggle="modal" data-target="#editAltModal<?= $sm['id'] ?>" class="badge badge-success"><i class="far fa-fw fa-edit"></i></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -70,3 +70,86 @@
 
 </div>
 <!-- End of Main Content -->
+
+<!-- Modal Lihat -->
+<?php foreach ($alternative as $alt) : ?>
+    <div class="modal fade" id="lihatModal<?= $alt['id_alternative'] ?>" tabindex="-1" role="dialog" aria-labelledby="lihatModal<?= $alt['id_alternative'] ?>Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="lihatModal<?= $alt['id_alternative'] ?>Label">Lihat Alternative</h5>
+                    <buttond type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </buttond>
+                </div>
+                <form action="<?= base_url('data/lihatalternatif/' . $alt['id_alternative']); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="<?= base_url('assets/img/FarmerSmg.png'); ?>" class="card-img">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $alt['name_alt']; ?></h5>
+                                    <p class="card-text">Alternatif lahan pertanian organik yang dikodifikasi menjadi (<?= $alt['code_alt']; ?>) dengan luas lahan <?= $alt['info']; ?> yang dikelola dengan sistem budidaya <?= $alt['plants']; ?>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- End Edit Modal -->
+
+<!-- Edit Modal -->
+<?php foreach ($alternative as $alt) : ?>
+    <div class="modal fade" id="editAltModal<?= $alt['id_alternative'] ?>" tabindex="-1" role="dialog" aria-labelledby="editAltModal<?= $alt['id_alternative'] ?>Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAltModal<?= $alt['id_alternative'] ?>Label">Edit Alternative</h5>
+                    <buttond type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </buttond>
+                </div>
+                <form action="<?= base_url('action/editalternative/' . $alt['id_alternative']); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="<?= $alt['name_alt'] ?>" id="name_alt" name="name_alt" placeholder="Nama Alternative">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="<?= $alt['info'] ?>" id="info" name="info" placeholder="Info lahan">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="<?= $alt['plants'] ?>" id="plants" name="plants" placeholder="Nama Tanaman">
+                        </div>
+                        <div class="form-group">
+                            <select name="menu_id" id="menu_id" class="form-control">
+                                <option>Select Item Criteria</option>
+                                <?php foreach ($menu as $mm) : ?>
+                                    <?php if ($esm['menu_id'] == $mm['id']) : ?>
+                                        <option value="<?= $mm['id']; ?>" selected> <?= $mm['menu']; ?> </option>
+                                    <?php else : ?>
+                                        <option value="<?= $mm['id']; ?>"> <?= $mm['menu']; ?> </option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- End Edit Modal -->

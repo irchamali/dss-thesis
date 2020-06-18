@@ -38,9 +38,9 @@
                     </div>
                     <div class="form-group">
                         <label for="weight">Bobot</label>
-                        <select class="form-control" id="weight" name="weight">
+                        <select class="form-control" id="weight_id" name="weight_id">
                             <?php foreach ($weight as $w) : ?>
-                                <?php if ($w == $criteria['weight']) : ?>
+                                <?php if ($w == $criteria['weight_id']) : ?>
                                     <option value="<?= $w; ?>" selected><?= $w; ?></option>
                                 <?php else : ?>
                                     <option value="<?= $w; ?>"><?= $w; ?></option>
