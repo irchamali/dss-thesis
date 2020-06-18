@@ -83,7 +83,13 @@ class Menu extends CI_Controller
 
     public function editsubmenu($id)
     {
-        $this->db->update('user_sub_menu', ['title' => $this->input->post('title')], ['id' => $id]);
+        $this->db->update('user_sub_menu', [
+            'title' => $this->input->post('title'),
+            'menu_id' => $this->input->post('menu_id'),
+            'url' => $this->input->post('url'),
+            'icon' => $this->input->post('icon'),
+            'is_active' => $this->input->post('is_active')
+        ], ['id' => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The submenu has ben edited!</div>');
         redirect('menu/submenu');
     }

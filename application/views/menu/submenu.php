@@ -125,7 +125,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="eeditSubMenuModal<?= $esm['id'] ?>Label">Add New Sub Menu</h5>
+                    <h5 class="modal-title" id="eeditSubMenuModal<?= $esm['id'] ?>Label">Edit Sub Menu</h5>
                     <buttond type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </buttond>

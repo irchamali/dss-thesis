@@ -1,12 +1,14 @@
 <?php
 error_reporting(0);
 $sawah = array();
+$lahan = array();
 foreach ($getDataAlternative as $key => $value) {
     $row[0] = $value->id_alternative;
     $row[1] = $value->name_alt;
     $row[2] = $value->code_alt;
 
     $sawah[$row[0]] = $row[2];
+    $lahan[$row[0]] = $row[1];
 }
 ?>
 <!-- Begin Page Content -->
@@ -737,6 +739,49 @@ foreach ($getDataAlternative as $key => $value) {
                     <!-- <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="false" aria-controls="collapseZero">
                         DONE
                     </button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-header" id="headingSeven">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSix">
+                        <strong>#7 Hasil dan kesimpulan</strong>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                <div class="card-body text-center">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ranking</th>
+                                    <th>Alternatif</th>
+                                    <th>Poin</th>
+                                    <!-- <th>Skor</th> -->
+                                    <!-- <th>Status</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                arsort($hasil);
+                                $no = 1;
+                                foreach ($hasil as $key => $value) { ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $lahan[$key]; ?></td>
+                                        <td><?= $value ?></td>
+
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+
                 </div>
             </div>
         </div>
