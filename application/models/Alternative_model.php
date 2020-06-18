@@ -1,14 +1,16 @@
-<?php 
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Alternative_model extends CI_Model{
+class Alternative_model extends CI_Model
+{
+
     public function getAllAlternative()
     {
         // $query = $this->db->get('electre_criterias');
         // return $query->result_array(); //baca query builder pada documentasi CI
         //lebih simplenya gini nih:
         return $this->db->get('electre_alternatives')->result_array(); //tanpa select * from 
-    } 
+    }
 
     public function tambahDataAlternative()
     {
@@ -26,12 +28,12 @@ class Alternative_model extends CI_Model{
         // $this->db->where('id_criteria', $id);
         // $this->db->delete('electre_criterias');
         //diatas adalah cara pertama: dengan method dua baris
-        $this->db->delete('electre_alternatives', ['id_alternative'=>$id]);
+        $this->db->delete('electre_alternatives', ['id_alternative' => $id]);
     }
 
     public function getAlternativeById($id)
     {
-        return $this->db->get_where('electre_alternatives', ['id_alternative'=>$id])->row_array();
+        return $this->db->get_where('electre_alternatives', ['id_alternative' => $id])->row_array();
     }
 
     public function ubahDataAlternative()
@@ -56,5 +58,4 @@ class Alternative_model extends CI_Model{
         //menampilkan pencarian secara keseluruhan
         return $this->db->get('electre_alternatives')->result_array();
     }
-
-} 
+}

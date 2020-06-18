@@ -1,14 +1,16 @@
-<?php 
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Criteria_model extends CI_Model{
+class Criteria_model extends CI_Model
+{
+
     public function getAllCriteria()
     {
         // $query = $this->db->get('electre_criterias');
         // return $query->result_array(); //baca query builder pada documentasi CI
         //lebih simplenya gini nih:
         return $this->db->get('electre_criterias')->result_array(); //tanpa select * from 
-    } 
+    }
 
     public function tambahDataCriteria()
     {
@@ -25,12 +27,12 @@ class Criteria_model extends CI_Model{
         // $this->db->where('id_criteria', $id);
         // $this->db->delete('electre_criterias');
         //diatas adalah cara pertama: dengan method dua baris
-        $this->db->delete('electre_criterias', ['id_criteria'=>$id]);
+        $this->db->delete('electre_criterias', ['id_criteria' => $id]);
     }
 
     public function getCriteriaById($id)
     {
-        return $this->db->get_where('electre_criterias', ['id_criteria'=>$id])->row_array();
+        return $this->db->get_where('electre_criterias', ['id_criteria' => $id])->row_array();
     }
 
     public function ubahDataCriteria()
@@ -54,5 +56,4 @@ class Criteria_model extends CI_Model{
         //menampilkan pencarian secara keseluruhan
         return $this->db->get('electre_criterias')->result_array();
     }
-
-} 
+}

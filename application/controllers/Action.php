@@ -1,21 +1,20 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Criteria extends CI_Controller
+class Action extends CI_Controller
 {
-
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Alternative_model', 'alternative_model');
-		$this->load->model('Criteria_model', 'criteria_model');
+		$this->load->model('Alternative_model'); //load dulu modelnya agr bisa dipake semua method dalam satu controller
+		$this->load->model('Criteria_model');
 		is_logged_in();
 		$this->load->library('form_validation');
 	}
 
-	public function penilaian()
+	public function value()
 	{
-		$data['title'] = 'Alternative Management';
+		$data['title'] = 'Alternative Data';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 		$data['alternative'] = $this->Alternative_model->getAllAlternative();
@@ -23,37 +22,22 @@ class Criteria extends CI_Controller
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
-		$this->load->view('action/penilaian', $data);
+		$this->load->view('action/value', $data);
 		$this->load->view('templates/footer2');
 	}
 
-	public function pembobotan()
+	public function weight()
 	{
-		$data['title'] = 'Criteria Management';
+		$data['title'] = 'Criteria Data';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$data['criteria'] = $this->db->get('electre_criterias')->result_array();
+		$data['criteria'] = $this->Criteria_model->getAllCriteria();
 
-		$this->form_validation->set_rules('criteria', 'Criteria', 'required');
-		$this->form_validation->set_rules('code', 'Code', 'required');
-		$this->form_validation->set_rules('weight', 'Weight', 'required');
-
-		if ($this->form_validation->run() ==  false) {
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('templates/topbar', $data);
-			$this->load->view('action/pembobotan', $data);
-			$this->load->view('templates/footer2');
-		} else {
-			$data = [
-				'criteria' => $this->input->post('criteria'),
-				'code' => $this->input->post('code'),
-				'weight' => $this->input->post('weight')
-			];
-			$this->db->insert('electre_criterias', $data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New criteria data added!</div>');
-			redirect('criteria');
-		}
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('action/weight', $data);
+		$this->load->view('templates/footer2');
 	}
 
 
