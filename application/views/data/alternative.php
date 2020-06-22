@@ -45,7 +45,7 @@
                         <?php foreach ($alternative as $alt) : ?>
                             <tr>
                                 <th scope="row"><?= $i; ?></th>
-                                <td><?= $alt['name_alt']; ?></td>
+                                <td><?= $alt['alternative']; ?></td>
                                 <td><?= $alt['code_alt']; ?></td>
                                 <td><?= $alt['info']; ?></td>
                                 <td><?= $alt['plants']; ?></td>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $alt['name_alt']; ?></h5>
+                                    <h5 class="card-title"><?= $alt['alternative']; ?></h5>
                                     <p class="card-text">Alternatif lahan pertanian organik yang dikodifikasi menjadi (<?= $alt['code_alt']; ?>) dengan luas lahan <?= $alt['info']; ?> yang dikelola dengan sistem budidaya <?= $alt['plants']; ?>.</p>
                                 </div>
                             </div>

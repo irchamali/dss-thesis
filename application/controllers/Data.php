@@ -43,7 +43,7 @@ class Data extends CI_Controller
 
     public function lihatalternatif($id)
     {
-        $this->db->update('electre_alternatives', ['name_alt' => $this->input->post('name_alt')], ['id' => $id]);
+        $this->db->update('electre_alternatives', ['alternative' => $this->input->post('alternative')], ['id' => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The alternative has ben looked!</div>');
         redirect('data/alternative');
     }

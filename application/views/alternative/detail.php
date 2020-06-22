@@ -11,22 +11,22 @@
         </ol>
     </nav>
 
-<!-- <div class="container"> -->
+    <!-- <div class="container"> -->
     <!-- <div class="row mt-3"> -->
-        <div class="col-md-6 mt-4">
-            
-            <div class="card">
-                <div class="card-header">
-                    Detail Data Alternative
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"><?= $alternative['name_alt']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $alternative['code_alt']; ?></h6>
-                    <p class="card-text">Alternative ini merupakan lahan pertanian desa <?= $alternative['name_alt']; ?> dengan luas lahan <?= $alternative['info']; ?> yang tengah ditanami tumbuhan: <?= $alternative['plants']; ?>.</p>
-                    <a href="<?= base_url();?>alternative" class="btn btn-primary ">Kembali</a>
-                </div>
-            </div>
+    <div class="col-md-6 mt-4">
 
+        <div class="card">
+            <div class="card-header">
+                Detail Data Alternative
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><?= $alternative['alternative']; ?></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><?= $alternative['code_alt']; ?></h6>
+                <p class="card-text">Alternative ini merupakan lahan pertanian desa <?= $alternative['alternative']; ?> dengan luas lahan <?= $alternative['info']; ?> yang tengah ditanami tumbuhan: <?= $alternative['plants']; ?>.</p>
+                <a href="<?= base_url(); ?>alternative" class="btn btn-primary ">Kembali</a>
+            </div>
         </div>
+
     </div>
+</div>
 </div>

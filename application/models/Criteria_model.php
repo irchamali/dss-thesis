@@ -3,7 +3,90 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Criteria_model extends CI_Model
 {
+    public $id_criteria;
+    public $criteria;
+    public $weight_id;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    private function getTable()
+    {
+        return 'electre_criterias';
+    }
+
+    private function getData()
+    {
+        $data = array(
+            'criteria' => $this->criteria,
+            'weight_id' => $this->weight_id
+        );
+        return $data;
+    }
+
+    public function getAll()
+    {
+        $query = $this->db->get($this->getTable());
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $criterias[] = $row;
+            }
+            return $criterias;
+        }
+    }
+
+    public function getById()
+    {
+        $this->db->from($this->getTable());
+        $this->db->where('id_criteria', $this->id_criteria);
+        $query = $this->db->get();
+
+        return $query->row();
+    }
+
+    public function insert()
+    {
+        $this->db->insert($this->getTable(), $this->getData());
+        return $this->db->insert_id();
+    }
+
+    public function update($where)
+    {
+        $this->db->update($this->getTable(), $this->getData(), $where);
+        return $this->db->affected_rows();
+    }
+
+    public function delete($id)
+    {
+        $this->db->where('id_criteria', $id);
+        return $this->db->delete($this->getTable());
+    }
+
+    public function getLastID()
+    {
+        $this->db->select('id_criteria');
+        $this->db->order_by('id_criteria', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get($this->getTable());
+        return $query->row();
+    }
+
+    public function getWeightCriteria()
+    {
+        $query = $this->db->query('select kriteria, bobot from kriteria');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $weight_id[] = $row;
+            }
+            return $weight_id;
+        }
+    }
+
+
+
+    // Batas
     public function getAllCriteria()
     {
         // $query = $this->db->get('electre_criterias');

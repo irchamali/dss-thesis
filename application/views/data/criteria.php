@@ -46,7 +46,7 @@
                                 <th scope="row"><?= $i; ?></th>
                                 <td><?= $crt['criteria']; ?></td>
                                 <td><?= $crt['code_crt']; ?></td>
-                                <td><?= $crt['weight']; ?></td>
+                                <td><?= $crt['weight_id']; ?></td>
                                 <td>
                                     <a href="" data-toggle="modal" data-target="#lihatModal<?= $crt['id_criteria'] ?>" class="badge badge-success"><i class="far fa-fw fa-eye"></i> Detail</a></td>
                             </tr>
@@ -87,7 +87,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $crt['criteria']; ?></h5>
-                                    <p class="card-text">Kriteria ini sebagai bagian dari faktor lingkungan yang dikodifikasi menjadi (<?= $crt['code_crt']; ?>) dengan bobot preferensi (w= <?= $crt['weight']; ?>) yang telah diberikan oleh pengambil keputusan <?= $user['name']; ?>.</p>
+                                    <p class="card-text">Kriteria ini sebagai bagian dari faktor lingkungan yang dikodifikasi menjadi (<?= $crt['code_crt']; ?>) dengan bobot preferensi (w= <?= $crt['weight_id']; ?>) yang telah diberikan oleh pengambil keputusan <?= $user['name']; ?>.</p>
                                 </div>
                             </div>
                         </div>

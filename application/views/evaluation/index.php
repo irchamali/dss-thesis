@@ -206,13 +206,13 @@ foreach ($getDataAlternative as $key => $value) {
                                         <!-- <td scope="row">Bobot</td> -->
                                         <?php
                                         // query untuk mengambil data nilai bobot criteria
-                                        $sql    = "SELECT id_criteria, weight FROM electre_criterias ORDER BY id_criteria";
+                                        $sql    = "SELECT id_criteria, weight_id FROM electre_criterias ORDER BY id_criteria";
                                         $result0 = $this->db->query($sql)->result();
 
                                         $criteria = array();
                                         foreach ($result0 as $key => $value) {
                                             $row[0] = $value->id_criteria;
-                                            $row[1] = $value->weight;
+                                            $row[1] = $value->weight_id;
                                             $criteria[$row[0]] = $row[1];
                                         }
                                         echo "<tr>";

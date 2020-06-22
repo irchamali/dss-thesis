@@ -6,24 +6,19 @@
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= base_url(); ?>alternative">Alternative</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url(); ?>action/add">Alternative</a></li>
             <li class="breadcrumb-item active" aria-current="page">Tambah</li>
         </ol>
     </nav>
 
     <!-- <div class="container"> -->
     <!-- <div class="row mt-3 mb-5"> -->
-    <div class="col-md-6 mt-4">
+    <div class="col-lg-6 mt-4">
         <div class="card">
             <div class="card-header">
                 Form Tambah Data Alternative
             </div>
             <div class="card-body">
-                <!-- <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>  -->
                 <form action="" method="POST">
                     <div class="form-group">
                         <label for="alternative">Nama Alternatif</label>

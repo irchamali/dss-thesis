@@ -8,6 +8,9 @@ class Action extends CI_Controller
 		parent::__construct();
 		$this->load->model('Alternative_model'); //load dulu modelnya agr bisa dipake semua method dalam satu controller
 		$this->load->model('Criteria_model');
+		$this->load->model('Subcriteria_model');
+		$this->load->model('Evaluation_model');
+		// $this->page->setLoadJs('assets/js/alternative');		
 		is_logged_in();
 		$this->load->library('form_validation');
 	}
@@ -18,6 +21,7 @@ class Action extends CI_Controller
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 		$data['alternative'] = $this->Alternative_model->getAllAlternative();
+		$data['dataView'] = $this->getDataInsert();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -66,6 +70,128 @@ class Action extends CI_Controller
 		], ['id_criteria' => $id]);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The weight has ben edited!</div>');
 		redirect('action/weight');
+	}
+
+	public function add($id = null)
+	{
+		$data['title'] = 'Tambah data alternative';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		if ($id == null) {
+			if (count($_POST)) {
+				$this->form_validation->set_rules('alternative', '', 'trim|required');
+
+				if ($this->form_validation->run() == false) {
+					$errors = $this->form_validation->error_array();
+					$this->session->set_flashdata('errors', $errors);
+					redirect(current_url());
+				} else {
+
+					$alternative = $this->input->post('alternative');
+					$value = $this->input->post('value');
+
+					$this->Alternative_model->alternative = $alternative;
+					if ($this->Alternative_model->insert() == true) {
+						$success = false;
+						$id_alternative = $this->Alternative_model->getLastID()->id_alternative;
+						foreach ($value as $item => $value) {
+							$this->Evaluation_model->id_alternative = $id_alternative;
+							$this->Evaluation_model->id_criteria = $item;
+							$this->Evaluation_model->value = $value;
+							if ($this->Evaluation_model->insert()) {
+								$success = true;
+							}
+						}
+						if ($success == true) {
+							$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The evaluations has ben added!</div>');
+							redirect('action/value');
+						} else {
+							echo 'gagal';
+						}
+					}
+				}
+				//-----
+			} else {
+				$data['dataView'] = $this->getDataInsert();
+				$this->load->view('templates/header', $data);
+				$this->load->view('templates/sidebar', $data);
+				$this->load->view('templates/topbar', $data);
+				$this->load->view('action/add', $data);
+				$this->load->view('templates/footer2');
+			}
+		}
+	}
+
+
+	public function edit($id = null)
+	{
+		$data['title'] = 'Ubah Data Alternative';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		if (count($_POST)) {
+			$id_alternative = $this->uri->segment(3, 0);
+			var_dump($id_alternative);
+			if ($id_alternative > 0) {
+				$alternative = $this->input->post('alternative');
+				$value = $this->input->post('value');
+				$where = array('id_alternative' => $id_alternative);
+				$this->Alternative_model->alternative = $alternative;
+				var_dump($alternative);
+				if ($this->Alternative_model->update($where) == true) {
+					$success = false;
+					foreach ($value as $item => $value) {
+						$this->Evaluation_model->id_alternative = $id_alternative;
+						$this->Evaluation_model->id_criteria = $item;
+						$this->Evaluation_model->value = $value;
+						if ($this->Evaluation_model->update()) {
+							$success = true;
+						}
+					}
+					if ($success == true) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The evaluation has been edited!</div>');
+						redirect('action/value');
+					} else {
+						echo 'gagal';
+						// $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">The evaluation data has not been edited!</div>');
+						// redirect('action/value');
+					}
+				}
+			}
+		}
+		$data['dataView'] = $this->getDataInsert();
+		$data['valueAlternative'] = $this->Evaluation_model->getValueByAlternative($id);
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('action/edit', $data);
+		$this->load->view('templates/footer2');
+	}
+
+
+
+	private function getDataInsert()
+	{
+		$dataView = array();
+		$criteria = $this->Criteria_model->getAll();
+		foreach ($criteria as $item) {
+			$this->Subcriteria_model->id_criteria = $item->id_criteria;
+			$dataView[$item->id_criteria] = array(
+				'nama' => $item->criteria,
+				'data' => $this->Subcriteria_model->getById()
+			);
+		}
+
+		return $dataView;
+	}
+
+	public function delete($id)
+	{
+		if ($this->Evaluation_model->delete($id) == true) {
+			if ($this->Alternative_model->delete($id) == true) {
+				$this->session->set_flashdata('message', 'Berhasil menghapus data :)');
+				echo json_encode(array("status" => 'true'));
+			}
+		}
 	}
 
 
