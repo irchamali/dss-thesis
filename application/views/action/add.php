@@ -13,7 +13,7 @@
 
     <!-- <div class="container"> -->
     <!-- <div class="row mt-3 mb-5"> -->
-    <div class="col-lg-6 mt-4">
+    <div class="col-lg-10 mt-4">
         <div class="card">
             <div class="card-header">
                 Form Tambah Data Alternative
@@ -21,26 +21,63 @@
             <div class="card-body">
                 <form action="" method="POST">
                     <div class="form-group">
-                        <label for="alternative">Nama Alternatif</label>
-                        <input type="text" name="alternative" class="form-control" id="alternative">
+                        <label for="alternative">Alternatif</label>
+                        <input name="alternative" type="text" class="form-control" id="alternative" value="<?php echo isset($valueAlternative[0]->alternative) ? $valueAlternative[0]->alternative : '' ?>" placeholder="nama alternatif">
                         <small class="form-text text-danger"><?= form_error('alternative'); ?></small>
                     </div>
-                    <div class="form-group">
-                        <label for="code_alt">Kode</label>
-                        <input type="text" name="code_alt" class="form-control" id="code_alt">
-                        <small class="form-text text-danger"><?= form_error('code_alt'); ?></small>
+                    <div class="table-responsive ">
+                        <label for="">Penilaian</label>
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th rowspan="2">Criteria</th>
+                                    <th colspan="4">Nilai</th>
+                                </tr>
+                                <tr>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($dataView as $item) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $item['nama']; ?></td>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($item['data'] as $dataItem) {
+                                        ?>
+                                            <td>
+                                                <input type="radio" name="value[<?= $dataItem->id_criteria ?>]" value="<?= $dataItem->value ?>" <?php if (isset($valueAlternative)) {
+                                                                                                                                                    foreach ($valueAlternative as $item => $value) {
+                                                                                                                                                        if ($value->id_criteria == $dataItem->id_criteria) {
+                                                                                                                                                            if ($value->value ==  $dataItem->value) {
+                                                                                                                                                                echo 'checked'
+                                                                                                                                                ?> <?php
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                } else {
+                                                                                                                                                    if ($no == 3) {
+                                                                                                                                                    ?> checked="checked" <?php
+                                                                                                                                                                        }
+                                                                                                                                                                    } ?> required>
+                                                <?php echo $dataItem->subcriteria;
+                                                $no++;
+                                                ?>
+                                            </td>
+                                    <?php
+                                        }
+                                        echo '</tr>';
+                                    }
+                                    ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group">
-                        <label for="plants">Tanaman</label>
-                        <input type="text" name="plants" class="form-control" id="plants">
-                        <small class="form-text text-danger"><?= form_error('plants'); ?></small>
-                    </div>
-                    <div class="form-group">
-                        <label for="info">Info Lahan</label>
-                        <input type="text" name="info" class="form-control" id="info">
-                        <small class="form-text text-danger"><?= form_error('info'); ?></small>
-                    </div>
-                    <button type="submit" name="tambah" class="btn btn-primary float-right">Tambah Data</button>
+                    <button type="submit" class="btn btn-primary float-right">SImpan</button>
                 </form>
             </div>
         </div>

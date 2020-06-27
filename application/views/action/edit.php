@@ -6,7 +6,7 @@
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= base_url(); ?>action/edit">Action</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url(); ?>action/value">Action</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
@@ -47,23 +47,21 @@
                                     <tr>
                                         <td><?php echo $item['nama']; ?></td>
                                         <?php
-                                        $no = 1;
+                                        //perulangan untuk nampilkan data criteria dan subcriteria dalam radiobutton
                                         foreach ($item['data'] as $dataItem) {
-
                                         ?>
                                             <td>
-                                                <input type="radio" name="value[<?php echo $dataItem->id_criteria ?>]" value="<?php echo $dataItem->value ?>" <?php if (isset($valueAlternative)) {
-                                                                                                                                                                    foreach ($valueAlternative as $item => $value) {
-                                                                                                                                                                        if ($value->id_criteria == $dataItem->id_criteria) {
-                                                                                                                                                                            if ($value->value ==  $dataItem->value) { ?> checked="checked" <?php
-                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                if ($no == 3) { ?> checked="checked" <?php
-                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                }                                                                                                                          ?> /> <?php echo $dataItem->subcriteria;
-                                                                                                                                                                                                                                                                                                                                                                                                    $no++; ?> </td>
+                                                <?php
+                                                $get_value_alternative = $this->db->query("SELECT * FROM electre_evaluations WHERE id_alternative='" . $this->uri->segment(3) . "' AND id_criteria='" . $dataItem->id_criteria . "'")->row();
+                                                if ($dataItem->value == $get_value_alternative->value) {
+                                                    echo '<input type="radio" name="value[' . $dataItem->id_criteria . ']" value="' . $dataItem->value . '" checked required>';
+                                                } else {
+                                                    echo '<input type="radio" name="value[' . $dataItem->id_criteria . ']" value="' . $dataItem->value . '" required>';
+                                                }
+                                                ?>
+                                                <?php echo $dataItem->subcriteria;
+                                                ?>
+                                            </td>
                                     <?php
                                         }
                                         echo '</tr>';

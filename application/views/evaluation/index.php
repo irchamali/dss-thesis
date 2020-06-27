@@ -4,7 +4,7 @@ $sawah = array();
 $lahan = array();
 foreach ($getDataAlternative as $key => $value) {
     $row[0] = $value->id_alternative;
-    $row[1] = $value->name_alt;
+    $row[1] = $value->alternative;
     $row[2] = $value->code_alt;
 
     $sawah[$row[0]] = $row[2];

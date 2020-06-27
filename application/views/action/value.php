@@ -51,7 +51,7 @@
                                 <td><?= $alt['plants']; ?></td>
                                 <td>
                                     <a href="" data-toggle="modal" data-target="#lihatModal<?= $alt['id_alternative'] ?>" class="badge badge-success"><i class="far fa-fw fa-eye"></i> Detail</a>
-                                    <a href="<?= base_url(); ?>action/edit/<?= $alt['id_alternative']; ?>" class="badge badge-info"><i class="far fa-fw fa-edit"></i> Edit</a>
+                                    <a href="<?= base_url(); ?>action/edit/<?= $alt['id_alternative']; ?>" class="badge badge-warning"><i class="far fa-fw fa-edit"></i> Edit</a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
