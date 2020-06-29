@@ -7,6 +7,9 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin_model'); //load dulu modelnya agr bisa dipake semua method dalam satu controller
+        $this->load->model('Evaluation_model');
+        $this->load->model('Chart_model');
+
         is_logged_in();
         $this->load->library('form_validation');
     }
@@ -15,6 +18,24 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
+        $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
+        $data['jumAlt'] = $this->Admin_model->getDataAlternative();
+        $data['jumCrt'] = $this->Admin_model->getDataCriteria();
+        $data['jumSubCrt'] = $this->Admin_model->getDataSubcriteria();
+        $data['jumUser'] = $this->Admin_model->getDataUser();
+
+        // $data['dataOk'] = $this->Chart_model->getDataNama();
+        $data['graph'] = $this->Chart_model->getLabel();
+        $data['jumVal1'] = $this->Chart_model->getDataValue1();
+        $data['jumVal2'] = $this->Chart_model->getDataValue2();
+        $data['jumVal3'] = $this->Chart_model->getDataValue3();
+        $data['jumVal4'] = $this->Chart_model->getDataValue4();
+        $data['jumVal5'] = $this->Chart_model->getDataValue5();
+        $data['jumVal6'] = $this->Chart_model->getDataValue6();
+        $data['jumVal7'] = $this->Chart_model->getDataValue7();
+        $data['jumVal8'] = $this->Chart_model->getDataValue8();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

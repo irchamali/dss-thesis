@@ -10,6 +10,17 @@ foreach ($getDataAlternative as $key => $value) {
     $sawah[$row[0]] = $row[2];
     $lahan[$row[0]] = $row[1];
 }
+
+// $penilaian = array();
+// while ($row2 = $getDataAlternative->fetch_array(MYSQLI_ASSOC)) {
+//     // mengambil hasil dari tabel alternative
+//     $tampil = json_decode($row2['info'], true);
+//     // mengambil penilaian
+//     for ($i = 0; $i < count($tampil); $i++) {
+//         $penilaian[$row2['id_alternative']][] = $tampil[$i]['hasil' . $i];
+//     }
+// }
+
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">

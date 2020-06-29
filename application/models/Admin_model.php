@@ -46,4 +46,32 @@ class Admin_model extends CI_Model
         $this->db->like('name', $keyword);
         return $this->db->get('user')->result_array();
     }
+
+    public function getDataAlternative()
+    {
+        $query = $this->db->query("SELECT * FROM `electre_alternatives`");
+        $jumAlt = $query->num_rows();
+        return $jumAlt;
+    }
+
+    public function getDataCriteria()
+    {
+        $query = $this->db->query("SELECT * FROM `electre_criterias`");
+        $jumCrt = $query->num_rows();
+        return $jumCrt;
+    }
+
+    public function getDataSubcriteria()
+    {
+        $query = $this->db->query("SELECT * FROM `electre_subcriterias`");
+        $jumSubCrt = $query->num_rows();
+        return $jumSubCrt;
+    }
+
+    public function getDataUser()
+    {
+        $query = $this->db->query("SELECT * FROM `user`");
+        $jumUser = $query->num_rows();
+        return $jumUser;
+    }
 }
