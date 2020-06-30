@@ -46,7 +46,7 @@
             <!-- Core plugin JavaScript-->
             <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Page level plugins -->
+            <!-- Page level plugins ChartJs-->
             <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.min.js"></script>
             <script src="<?= base_url('assets/'); ?>js/chart/chart-area-demo.js"></script>
             <script src="<?= base_url('assets/'); ?>js/chart/chart-pie-demo.js"></script>
@@ -84,13 +84,13 @@
                 });
             </script>
 
+            <!-- batas bikin chart  -->
             <script>
-                // Bar Chart Example
-                var ctx = document.getElementById("barChart");
-                var barChart = new Chart(ctx, {
-                    type: 'bar',
+                // Area Chart Example
+                var ctx = document.getElementById("areaChart");
+                var lineChart = new Chart(ctx, {
+                    type: 'line',
                     data: {
-                        // labels: ["Sawangan", "Mangunsari", "Tirtosari", "Podosoko", "Butuh", "Krogowanan", "Kapuhan", "Jati"],
                         labels: [
                             <?php
                             if (count($graph) > 0) {
@@ -100,12 +100,19 @@
                             }
                             ?>
                         ],
-
                         datasets: [{
-                            label: "Data Nilai X",
-                            backgroundColor: "#4e73df",
-                            hoverBackgroundColor: "#2e59d9",
-                            borderColor: "#4e73df",
+                            label: "Data Nilai Ekl",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(78, 115, 223, 0.05)",
+                            borderColor: "rgba(78, 115, 223, 1)",
+                            pointRadius: 3,
+                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHoverRadius: 3,
+                            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHitRadius: 10,
+                            pointBorderWidth: 2,
                             data: [
                                 <?php
                                 if (count($sumVal) > 0) {
@@ -130,116 +137,6 @@
                         scales: {
                             xAxes: [{
                                 time: {
-                                    unit: 'month'
-                                },
-                                gridLines: {
-                                    display: false,
-                                    drawBorder: false
-                                },
-                                ticks: {
-                                    maxTicksLimit: 8
-                                },
-                                maxBarThickness: 25,
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    min: 0,
-                                    max: 30,
-                                    maxTicksLimit: 5,
-                                    padding: 10,
-                                    // Include a dollar sign in the ticks
-                                    callback: function(value, index, values) {
-                                        return '' + number_format(value);
-                                    }
-                                },
-                                gridLines: {
-                                    color: "rgb(234, 236, 244)",
-                                    zeroLineColor: "rgb(234, 236, 244)",
-                                    drawBorder: false,
-                                    borderDash: [2],
-                                    zeroLineBorderDash: [2]
-                                }
-                            }],
-                        },
-                        legend: {
-                            display: false
-                        },
-                        tooltips: {
-                            titleMarginBottom: 10,
-                            titleFontColor: '#6e707e',
-                            titleFontSize: 14,
-                            backgroundColor: "rgb(255,255,255)",
-                            bodyFontColor: "#858796",
-                            borderColor: '#dddfeb',
-                            borderWidth: 1,
-                            xPadding: 15,
-                            yPadding: 15,
-                            displayColors: false,
-                            caretPadding: 10,
-                            callbacks: {
-                                label: function(tooltipItem, chart) {
-                                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
-                                }
-                            }
-                        },
-                    }
-                });
-            </script>
-
-            <script>
-                // Area Chart Example
-                var ctx = document.getElementById("areaChart");
-                var lineChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: [
-                            <?php
-                            if (count($graph) > 0) {
-                                foreach ($graph as $data) {
-                                    echo "'" . $data->alternative . "',";
-                                }
-                            }
-                            ?>
-                        ],
-                        datasets: [{
-                            label: "Earnings",
-                            lineTension: 0.3,
-                            backgroundColor: "rgba(78, 115, 223, 0.05)",
-                            borderColor: "rgba(78, 115, 223, 1)",
-                            pointRadius: 3,
-                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                            pointBorderColor: "rgba(78, 115, 223, 1)",
-                            pointHoverRadius: 3,
-                            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                            pointHitRadius: 10,
-                            pointBorderWidth: 2,
-                            data: [
-                                <?= $jumVal1; ?>,
-                                <?= $jumVal2; ?>,
-                                <?= $jumVal3; ?>,
-                                <?= $jumVal4; ?>,
-                                <?= $jumVal5; ?>,
-                                <?= $jumVal6; ?>,
-                                <?= $jumVal7; ?>,
-                                <?= $jumVal8; ?>
-                            ],
-                        }],
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        layout: {
-                            padding: {
-                                left: 10,
-                                right: 25,
-                                top: 25,
-                                bottom: 0
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                time: {
                                     unit: 'date'
                                 },
                                 gridLines: {
@@ -247,12 +144,12 @@
                                     drawBorder: false
                                 },
                                 ticks: {
-                                    maxTicksLimit: 10
+                                    maxTicksLimit: 7
                                 }
                             }],
                             yAxes: [{
                                 ticks: {
-                                    maxTicksLimit: 10,
+                                    maxTicksLimit: 5,
                                     padding: 10,
                                     // Include a dollar sign in the ticks
                                     callback: function(value, index, values) {
@@ -297,6 +194,109 @@
             </script>
 
             <script>
+                // Bar Chart Example
+                var ctx = document.getElementById("barChart");
+                var barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        // labels: ["Sawangan", "Mangunsari", "Tirtosari", "Podosoko", "Butuh", "Krogowanan", "Kapuhan", "Jati"],
+                        labels: [
+                            <?php
+                            if (count($graph) > 0) {
+                                foreach ($graph as $data) {
+                                    echo "'" . $data->alternative . "',";
+                                }
+                            }
+                            ?>
+                        ],
+
+                        datasets: [{
+                            label: "Data Nilai X",
+                            backgroundColor: "#4e73df",
+                            hoverBackgroundColor: "#2e59d9",
+                            borderColor: "#4e73df",
+                            data: [
+                                <?php
+                                if (count($dataBar) > 0) {
+                                    foreach ($dataBar as $data) {
+                                        echo "'" . $data->result . "',";
+                                    }
+                                }
+                                ?>
+                            ],
+                        }],
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        layout: {
+                            padding: {
+                                left: 10,
+                                right: 25,
+                                top: 25,
+                                bottom: 0
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                time: {
+                                    unit: 'month'
+                                },
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    maxTicksLimit: 8
+                                },
+                                maxBarThickness: 25,
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 6,
+                                    maxTicksLimit: 5,
+                                    padding: 10,
+                                    // Include a dollar sign in the ticks
+                                    callback: function(value, index, values) {
+                                        return '' + number_format(value);
+                                    }
+                                },
+                                gridLines: {
+                                    color: "rgb(234, 236, 244)",
+                                    zeroLineColor: "rgb(234, 236, 244)",
+                                    drawBorder: false,
+                                    borderDash: [2],
+                                    zeroLineBorderDash: [2]
+                                }
+                            }],
+                        },
+                        legend: {
+                            display: false
+                        },
+                        tooltips: {
+                            titleMarginBottom: 10,
+                            titleFontColor: '#6e707e',
+                            titleFontSize: 14,
+                            backgroundColor: "rgb(255,255,255)",
+                            bodyFontColor: "#858796",
+                            borderColor: '#dddfeb',
+                            borderWidth: 1,
+                            xPadding: 15,
+                            yPadding: 15,
+                            displayColors: false,
+                            caretPadding: 10,
+                            callbacks: {
+                                label: function(tooltipItem, chart) {
+                                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+                                }
+                            }
+                        },
+                    }
+                });
+            </script>
+
+            <script>
                 // Pie Chart Example
                 var ctx = document.getElementById("pieChart");
                 var pieChart = new Chart(ctx, {
@@ -305,7 +305,16 @@
                         labels: ["Sangat Sesuai", "Sesuai", "Cukup Sesuai"],
                         datasets: [{
                             // data: [55, 30, 15],
-                            data: [3, 3, 2],
+                            // data: [3, 3, 2],
+                            data: [
+                                <?php
+                                if (count($dataPie) > 0) {
+                                    foreach ($dataPie as $data) {
+                                        echo "'" . $data->pie . "',";
+                                    }
+                                }
+                                ?>
+                            ],
                             backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
                             hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                             hoverBorderColor: "rgba(234, 236, 244, 1)",

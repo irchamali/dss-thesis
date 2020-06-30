@@ -21,6 +21,30 @@ class Chart_model extends CI_Model
         }
     }
 
+    public function getDataBar()
+    {
+        $query = $this->db->query("SELECT id_alternative, SUM(result) as result FROM electre_alternatives GROUP BY id_alternative");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $result[] = $row;
+            }
+
+            return $result;
+        }
+    }
+
+    public function getDataPie()
+    {
+        $query = $this->db->query("SELECT COUNT(new_info) as pie FROM electre_alternatives GROUP BY new_info");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $pie[] = $row;
+            }
+
+            return $pie;
+        }
+    }
+
     function getDataValue1()
     {
         $query = $this->db->query("SELECT SUM(value) as value FROM electre_evaluations WHERE id_alternative='1'");

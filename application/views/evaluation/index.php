@@ -48,7 +48,7 @@ foreach ($getDataAlternative as $key => $value) {
                 </h2>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <h4>Perbandingan berpasangan (x)</h4>
                     <div class="card-body">
@@ -749,7 +749,6 @@ foreach ($getDataAlternative as $key => $value) {
                         </table>
                     </div>
                     <br>
-
                 </div>
             </div>
         </div>
@@ -770,8 +769,8 @@ foreach ($getDataAlternative as $key => $value) {
                                 <tr>
                                     <th>Ranking</th>
                                     <th>Alternatif</th>
-                                    <th>Poin (Ekl)</th>
                                     <th>Skor (X)</th>
+                                    <th>Poin (Ekl)</th>
                                     <th>Info</th>
                                 </tr>
                             </thead>
@@ -784,16 +783,16 @@ foreach ($getDataAlternative as $key => $value) {
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $lahan[$key]; ?></td>
-                                        <td><?= $value ?></td>
                                         <td><?= array_sum($X[$key]); ?></td>
+                                        <td><?= $hasil[$key]; ?></td>
                                         <td>
                                             <?php
                                             if (($hasil[$key]) > 3) {
                                                 echo "Sangat Sesuai";
                                             } else if (($hasil[$key]) >= 3) {
-                                                echo "Sesuai";
-                                            } else if (($hasil[$key]) <= 3) {
                                                 echo "Cukup Sesuai";
+                                            } else if (($hasil[$key]) <= 3) {
+                                                echo "Sesuai Marginal";
                                             }
                                             ?>
                                         </td>
@@ -803,34 +802,27 @@ foreach ($getDataAlternative as $key => $value) {
                             </tbody>
                         </table>
                     </div>
-                    <br>
                     <hr>
-                    <!-- <a href="<?= base_url(); ?>admin" class="btn btn-success"><i class="fas fa-arrow-right"></i> SUBMIT</a> -->
-                    <!-- <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="false" aria-controls="collapseZero">
-                        DONE
-                    </button> -->
                     <div>
-                        <form method="post">
-                            <input type="submit" name="update" value="Update Info" class="btn btn-block btn-success btn-md font-weight-medium auth-form-btn">
+                        <form action="" method="post">
+                            <input type="submit" name="update" value="Infografis" class="btn btn-block btn-success btn-md font-weight-medium auth-form-btn">
                         </form>
                         <?php
                         if (isset($_POST['update'])) {
                             foreach ($hasil as $key => $value) {
                                 if (($hasil[$key]) > 3) {
-                                    $nilai = "Sangat Sesuai";
+                                    $nilai = "S1";
                                 } else if (($hasil[$key]) >= 3) {
-                                    $nilai = "Sesuai";
+                                    $nilai = "S2";
                                 } else if (($hasil[$key]) <= 3) {
-                                    $nilai = "Cukup Sesuai";
+                                    $nilai = "S3";
                                 }
 
                                 $sql = "UPDATE electre_alternatives SET new_info = '$nilai' WHERE id_alternative = '$key'";
                                 $query = $this->db->query($sql);
 
                                 if ($query) {
-
-                                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">The data has ben updated!</div>');
-                                    redirect('admin');
+                                    echo "<script>window.location=(href='admin')</script>";
                                 }
                             }
                         }

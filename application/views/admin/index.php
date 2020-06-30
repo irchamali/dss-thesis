@@ -128,6 +128,19 @@
     <div class="row">
 
         <div class="col-xl-8 col-lg-7">
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="areaChart"></canvas>
+                    </div>
+                    <hr>
+                    Grafik berbentuk <code>Area Chart</code> ini merupakan hasil dari perhitungan perbandingan berpasangan antara alternatif dengan masing-masing kriteria (x).
+                </div>
+            </div>
 
             <!-- Bar Chart -->
             <div class="card shadow mb-4">
@@ -139,24 +152,10 @@
                         <canvas id="barChart"></canvas>
                     </div>
                     <hr>
-                    Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
+                    Garafik berbentuk <code>Bar Chart</code> ini merupakan nilai (Ekl) yang didapat dari proses tahap akhir evaluasi kesesuaian lahan menggunakan metode Electre .
                 </div>
             </div>
 
-
-            <!-- Area Chart -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                </div>
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="areaChart"></canvas>
-                    </div>
-                    <hr>
-                    Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-                </div>
-            </div>
         </div>
 
         <!-- Donut Chart -->
@@ -170,20 +169,21 @@
                 <div class="card-body">
                     <div class="chart-pie pt-4">
                         <canvas id="pieChart"></canvas>
+
                     </div>
                     <div class="mt-4 text-center small">
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Sangat Sesuai
+                            <i class="fas fa-circle text-primary"></i> S1
                         </span>
                         <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Sesuai
+                            <i class="fas fa-circle text-success"></i> S2
                         </span>
                         <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Cukup Sesuai
+                            <i class="fas fa-circle text-info"></i> S3
                         </span>
                     </div>
                     <hr>
-                    Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
+                    Grafik berbentuk <code>Pie Chart</code> ini sebagai representasi dari pengelompokan alternatif dalam kelas kesesuaian lahan (S).
                 </div>
             </div>
         </div>
