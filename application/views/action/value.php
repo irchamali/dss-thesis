@@ -91,7 +91,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $alt['alternative']; ?></h5>
-                                    <p class="card-text">Alternatif lahan pertanian organik yang dikodifikasi menjadi (<?= $alt['code_alt']; ?>) dengan luas lahan <?= $alt['info']; ?> yang dikelola dengan sistem budidaya <?= $alt['plants']; ?>.</p>
+                                    <p class="card-text">Merupakan salahsatu Alternatif lahan pertanian di Kabupaten Magelang yang dikodifikasi menjadi (<?= $alt['code_alt']; ?>) yang dikelola dengan sistem budidaya <?= $alt['plants']; ?> <?= $alt['info']; ?>.</p>
                                 </div>
                             </div>
                         </div>

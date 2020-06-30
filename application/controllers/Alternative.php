@@ -78,13 +78,12 @@ class Alternative extends CI_Controller
         //maka kirimkan method ini dengan parameter $id yg ada dalam tanda kurung
         $data['alternative'] = $this->Alternative_model->getAlternativeById($id);
         // $data['weight'] = $this->Criteria_model->getAllWeight();
-        // $data['weight'] = ['1','2','3','4','5'];
+        $data['info'] = ['Organik', 'Non Organik'];
 
         $this->form_validation->set_rules('alternative', 'Nama Alternatif', 'required');
         $this->form_validation->set_rules('code_alt', 'Code Alternatif', 'required');
-        $this->form_validation->set_rules('info', 'Info Lahan', 'required');
         $this->form_validation->set_rules('plants', 'Tanaman', 'required');
-        // $this->form_validation->set_rules('weight', 'Weight', 'required'); //gak perlu karena combo-box
+        // $this->form_validation->set_rules('info', 'Info Lahan', 'required');//gak perlu karena combo-box
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);

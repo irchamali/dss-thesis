@@ -51,8 +51,8 @@
                             <th scope="col">#</th>
                             <th scope="col">Alternative</th>
                             <th scope="col">Kode</th>
-                            <th scope="col">Info</th>
                             <th scope="col">Tanaman</th>
+                            <th scope="col">Info</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -63,8 +63,8 @@
                                 <th scope="row"><?= $i; ?></th>
                                 <td><?= $alt['alternative']; ?></td>
                                 <td><?= $alt['code_alt']; ?></td>
-                                <td><?= $alt['info']; ?></td>
                                 <td><?= $alt['plants']; ?></td>
+                                <td><?= $alt['info']; ?></td>
                                 <td>
                                     <!-- <a href="" class="badge badge-warning" data-toggle="modal" data-target="#detailModal" 
                             >ubah</a> -->

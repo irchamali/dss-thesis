@@ -37,14 +37,21 @@
                         <small class="form-text text-danger"><?= form_error('code_alt'); ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="info">Info Lahan</label>
-                        <input type="text" name="info" class="form-control" id="info" value="<?= $alternative['info']; ?>">
-                        <small class="form-text text-danger"><?= form_error('info'); ?></small>
-                    </div>
-                    <div class="form-group">
                         <label for="plants">Tanaman</label>
                         <input type="text" name="plants" class="form-control" id="plants" value="<?= $alternative['plants']; ?>">
                         <small class="form-text text-danger"><?= form_error('plants'); ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="info">Info Lahan</label>
+                        <select class="form-control" id="info" name="info">
+                            <?php foreach ($info as $io) : ?>
+                                <?php if ($io == $alternative['info']) : ?>
+                                    <option value="<?= $io; ?>" selected><?= $io; ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $io; ?>"><?= $io; ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <button type="submit" name="tambah" class="btn btn-primary float-right">Update</button>

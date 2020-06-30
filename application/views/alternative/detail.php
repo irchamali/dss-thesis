@@ -20,9 +20,9 @@
                 Detail Data Alternative
             </div>
             <div class="card-body">
-                <h5 class="card-title"><?= $alternative['alternative']; ?></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><?= $alternative['code_alt']; ?></h6>
-                <p class="card-text">Alternative ini merupakan lahan pertanian desa <?= $alternative['alternative']; ?> dengan luas lahan <?= $alternative['info']; ?> yang tengah ditanami tumbuhan: <?= $alternative['plants']; ?>.</p>
+                <h5 class="card-title"><b><?= $alternative['alternative']; ?></b></h5>
+                <hr>
+                <p class="card-text">Merupakan salahsatu Alternatif lahan pertanian di Kabupaten Magelang yang dikodifikasi menjadi (<?= $alternative['code_alt']; ?>) yang dikelola dengan sistem budidaya <?= $alternative['plants']; ?> <?= $alternative['info']; ?>.</p>
                 <a href="<?= base_url(); ?>alternative" class="btn btn-primary ">Kembali</a>
             </div>
         </div>

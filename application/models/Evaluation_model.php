@@ -95,18 +95,6 @@ class Evaluation_model extends CI_Model
         return $this->db->delete($this->getTable());
     }
 
-    public function getSumVal()
-    {
-        $query = $this->db->query("SELECT id_alternative, SUM(value) as val FROM electre_evaluations GROUP BY id_alternative");
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-                $val[] = $row;
-            }
-
-            return $val;
-        }
-    }
-
 
     // Batas model baru dgn lama
 

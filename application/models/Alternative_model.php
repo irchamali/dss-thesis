@@ -79,8 +79,8 @@ class Alternative_model extends CI_Model
         $data = [
             "alternative" => $this->input->post('alternative', true),
             "code_alt" => $this->input->post('code_alt', true),
-            "info" => $this->input->post('info', true),
-            "plants" => $this->input->post('plants', true)
+            "plants" => $this->input->post('plants', true),
+            "info" => $this->input->post('info', true)
         ]; //urutkan sesuai dengan field yg tampil //true untuk mengamnkan data yg dikirim
         $this->db->insert('electre_alternatives', $data);
     }
@@ -103,8 +103,8 @@ class Alternative_model extends CI_Model
         $data = [
             "alternative" => $this->input->post('alternative', true),
             "code_alt" => $this->input->post('code_alt', true),
-            "info" => $this->input->post('info', true),
-            "plants" => $this->input->post('plants', true)
+            "plants" => $this->input->post('plants', true),
+            "info" => $this->input->post('info', true)
         ]; //urutkan sesuai dengan field yg tampil //true untuk mengamnkan data yg dikirim
         //bedanya dengan insert ada pada penambahan 'where' sebelum 'update'
         $this->db->where('id_alternative', $this->input->post('id_alternative'));
@@ -115,8 +115,7 @@ class Alternative_model extends CI_Model
     {
         $keyword = $this->input->post('keyword', true);
         $this->db->like('alternative', $keyword);
-        // $this->db->or_like('code_crt', $keyword);
-        // $this->db->or_like('weight', $keyword);
+
         //menampilkan pencarian secara keseluruhan
         return $this->db->get('electre_alternatives')->result_array();
     }
