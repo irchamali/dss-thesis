@@ -26,8 +26,8 @@ class Admin extends CI_Controller
         $data['jumSubCrt'] = $this->Admin_model->getDataSubcriteria();
         $data['jumUser'] = $this->Admin_model->getDataUser();
 
-        // $data['dataOk'] = $this->Chart_model->getDataNama();
         $data['graph'] = $this->Chart_model->getLabel();
+        $data['sumVal'] = $this->Chart_model->getSumVal();
         $data['jumVal1'] = $this->Chart_model->getDataValue1();
         $data['jumVal2'] = $this->Chart_model->getDataValue2();
         $data['jumVal3'] = $this->Chart_model->getDataValue3();

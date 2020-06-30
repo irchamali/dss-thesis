@@ -8,6 +8,7 @@ class Evaluation extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Evaluation_model'); //load dulu modelnya agr bisa dipake semua method dalam satu controller
+        $this->load->model('Chart_model');
         is_logged_in();
         $this->load->library('form_validation');
     }
@@ -19,6 +20,7 @@ class Evaluation extends CI_Controller
 
         $data['getDataCriteria'] = $this->Evaluation_model->getDataCriteria();
         $data['getDataAlternative'] = $this->Evaluation_model->getDataAlternative();
+        $data['sumVal'] = $this->Chart_model->getSumVal();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

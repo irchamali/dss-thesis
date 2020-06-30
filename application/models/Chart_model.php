@@ -9,15 +9,15 @@ class Chart_model extends CI_Model
         return $data->result();
     }
 
-    function getDataAlt()
+    public function getSumVal()
     {
-        $query = $this->db->query("SELECT alternative FROM electre_alternatives GROUP BY alternative");
-
+        $query = $this->db->query("SELECT id_alternative, SUM(value) as val FROM electre_evaluations GROUP BY id_alternative");
         if ($query->num_rows() > 0) {
-            foreach ($query->result() as $data) {
-                $hasil[] = $data;
+            foreach ($query->result() as $row) {
+                $val[] = $row;
             }
-            return $hasil;
+
+            return $val;
         }
     }
 

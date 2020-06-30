@@ -4,6 +4,19 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
+    <?php if ($this->session->flashdata('message')) : ?>
+        <div class="row mt-3">
+            <div class="col-md-10">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Yeey, Data hasil evaluasi telah <strong>berhasil </strong><?= $this->session->flashdata('flash'); ?>terupdate!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
@@ -130,6 +143,20 @@
                 </div>
             </div>
 
+
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="areaChart"></canvas>
+                    </div>
+                    <hr>
+                    Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
+                </div>
+            </div>
         </div>
 
         <!-- Donut Chart -->
